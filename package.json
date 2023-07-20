@@ -1,0 +1,21 @@
+{
+  "name": "hapi-postgresql",
+  "version": "1.0.0",
+  "description": "A simple Hapi PostgreSQL connection plugin, thanks to https://github.com/Marsup/hapi-mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -M 5000 -t 100 -a @hapi/code -L"
+  },
+  "author": "frank chen",
+  "license": "MIT",
+  "devDependencies": {
+    "@hapi/code": "^9.0.3",
+    "@hapi/hapi": "^21.3.2",
+    "@hapi/hoek": "^11.0.2",
+    "@hapi/lab": "^25.1.3"
+  },
+  "dependencies": {
+    "joi": "^17.9.2",
+    "pg": "^8.11.1"
+  }
+}
