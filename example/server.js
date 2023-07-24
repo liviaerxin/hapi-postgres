@@ -13,9 +13,12 @@ const init = async () => {
         plugin: require('../lib'),
         options: {
             settings: {
-                connectionString: 'postgresql://postgres:123456@127.0.0.1/db',
-                max: 10,
-                connectionTimeoutMillis: 1000,
+                // connectionString: 'postgres://postgres:mysecretpassword@localhost:5432/db',
+                host: 'localhost',
+                port: 5432,
+                database: 'db',
+                user: 'postgres',
+                password: 'mysecretpassword',
             },
             decorate: true,
         },
