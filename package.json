@@ -6,7 +6,7 @@
   "scripts": {
     "test": "lab -M 5000 -t 100",
     "build": "tsc -p tsconfig.release.json --outDir dist",
-    "format": "prettier -c ./src",
+    "format": "prettier -c .",
     "clean": "rimraf dist/"
   },
   "repository": {
