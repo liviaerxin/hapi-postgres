@@ -1,6 +1,6 @@
 {
   "name": "hapi-postgres",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A simple Hapi PostgreSQL connection pool plugin, thanks to https://github.com/Marsup/hapi-mongodb",
   "main": "lib/index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "hapi",
     "postgres"
   ],
-  "author": "frank chen",
+  "author": "liviaerxin <1yue8haogaoqi@gmail.com>",
   "license": "MIT",
   "engines": {
     "node": ">= v12.22.12"
