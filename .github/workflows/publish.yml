@@ -54,9 +54,7 @@ jobs:
           node-version: '17.x'
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies and build 🔧
-        run: |
-          cat package.json
-          npm ci && npm run build
+        run: npm ci && npm run build
       - name: Publish package on NPM 📦
         run: npm publish
         env:
