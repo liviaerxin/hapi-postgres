@@ -1,45 +1,61 @@
 name: Publish npm package
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [created]
   pull_request:
 
 jobs:
-  test:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu]
-        node: ['*', '16', '14']
-        hapi: ['20', '19', '18']
-        include:
-          - os: ubuntu
-            node: '*'
-            hapi: 'latest'
+  # test:
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       os: [ubuntu]
+  #       node: ['*', '16', '14']
+  #       hapi: ['20', '19', '18']
+  #       include:
+  #         - os: ubuntu
+  #           node: '*'
+  #           hapi: 'latest'
 
-    services:
-      mongodb:
-        image: mongo:4
-        ports:
-          - 27017:27017
+  #   services:
+  #     mongodb:
+  #       image: mongo:4
+  #       ports:
+  #         - 27017:27017
 
-    runs-on: ${{ matrix.os }}-latest
-    name: ${{ matrix.os }} node@${{ matrix.node }} hapi@${{ matrix.hapi }}
+  #   runs-on: ${{ matrix.os }}-latest
+  #   name: ${{ matrix.os }} node@${{ matrix.node }} hapi@${{ matrix.hapi }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ matrix.node }}
+  #         check-latest: ${{ matrix.node == '*' }}
+
+  #     - name: install
+  #       run: npm install
+
+  #     - name: install hapi
+  #       run: npm install @hapi/hapi@${{ matrix.hapi }}
+
+  #     - name: test
+  #       run: npm test
+
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
-          check-latest: ${{ matrix.node == '*' }}
-
-      - name: install
-        run: npm install
-
-      - name: install hapi
-        run: npm install @hapi/hapi@${{ matrix.hapi }}
-
-      - name: test
-        run: npm test
+          node-version: '17.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies and build 🔧
+        run: npm ci && npm run build
+      - name: Publish package on NPM 📦
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
