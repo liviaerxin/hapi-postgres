@@ -4,7 +4,10 @@
   "description": "A simple Hapi PostgreSQL connection pool plugin, thanks to https://github.com/Marsup/hapi-mongodb",
   "main": "lib/index.js",
   "scripts": {
-    "test": "lab -M 5000 -t 100"
+    "test": "lab -M 5000 -t 100",
+    "build": "tsc -p tsconfig.release.json --outDir dist",
+    "format": "prettier -c ./src",
+    "clean": "rimraf dist/"
   },
   "repository": {
     "type": "git",
@@ -28,7 +31,10 @@
     "@hapi/hapi": "^21.3.2",
     "@hapi/hoek": "^11.0.2",
     "@hapi/lab": "^25.1.3",
-    "sinon": "^15.2.0"
+    "sinon": "^15.2.0",
+    "typescript": "4.3.5",
+    "rimraf": "^3.0.2",
+    "prettier": "2.8.0"
   },
   "peerDependencies": {
     "@hapi/hapi": ">= 18.0.0"
